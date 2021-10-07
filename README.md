@@ -11,12 +11,12 @@ Install necessary packages for Husky navigation package using :
 
 `sudo apt-get install ros-<ros-version>-husky-navigation ros-<ros-version>-husky-gazebo ros-<ros-version>-husky-viz`
 
-To use the packages from this repo, create a ros workspace and clone the repo:
-`mkdir -p ~/myros_ws/src` and build it
+To use the packages from this repo, create a ros workspace and clone the repo and build it as follows:
 ```
+mkdir -p ~/myros_ws/src
 cd ~/myros_ws/src
 git clone https://github.com/sjssmit/robot_navigation_stack.git
-cd ~/myros_ws/src
+cd ~/myros_ws
 catkin_make
 ```
 Source the environment using:
@@ -25,8 +25,12 @@ Source the environment using:
 launch the gazebo, rviz and all the nodes using
 `roslaunch robot robot.launch`
 
+Yay! if everything works good, then gazebo and rviz will launch and random goals will be published every 10 seconds and the robot will move to achieve it.
+
 If you are getting no laser scan recieved error, then it implies that Husky robot laser sensor is disabled. To enable this, change the environment variable to true (1), in  husky.urdf.xacro file found in 
-`/opt/ros/<ros-version>/share/husky_description/urdf/husky.urdf.xacro`  such that the final form looks like:
+
+`/opt/ros/<ros-version>/share/husky_description/urdf/husky.urdf.xacro`  
+such that the final form looks like:
 
 `<xacro:arg name="laser_enabled" default="$(optenv HUSKY_LMS1XX_ENABLED 1)" />`
 
